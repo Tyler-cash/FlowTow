@@ -5,13 +5,12 @@ Created on Mar 26, 2012
 '''
 
 import sqlite3
-import random
+
 
 class COMP249Db():
     '''
     Provide an interface to the database for a COMP249 web application
     '''
-
 
     def __init__(self, dbname="comp249.db"):
         '''
@@ -38,7 +37,6 @@ class COMP249Db():
         """Destroy the database file"""
         pass
 
-
     def encode(self, password):
         """Return a one-way hashed version of the password suitable for
         storage in the database"""
@@ -49,12 +47,10 @@ class COMP249Db():
         dk = hashlib.pbkdf2_hmac('sha256', bytes(password, 'utf-8'), salt, 100000)
         return binascii.hexlify(dk).decode('utf-8')
 
-
     def create_tables(self):
         """Create and initialise the database tables
         This will have the effect of overwriting any existing
         data."""
-
 
         sql = """
 DROP TABLE IF EXISTS users;
@@ -90,31 +86,29 @@ CREATE TABLE likes (
         self.conn.executescript(sql)
         self.conn.commit()
 
-
     def sample_data(self):
         """Generate some sample data for testing the web
         application. Erases any existing data in the
         database"""
 
-                    #  pass,   nick             avatar
+        #  pass,   nick             avatar
         self.users = [('bob', 'Bobalooba', 'http://robohash.org/bob'),
                       ('jim', 'Jimbulator', 'http://robohash.org/jim'),
                       ('mary', 'Contrary', 'http://robohash.org/mary'),
                       ('jb', 'Bean', 'http://robohash.org/jb'),
                       ('mandible', 'Mandible', 'http://robohash.org/mandible'),
                       ('bar', 'Barfoo', 'http://robohash.org/bar'),
-        ]
+                      ]
         #  Robots lovingly delivered by Robohash.org
 
 
         # filename, date, useremail, comments
         self.images = [
-                   ('cycling.jpg',     '2015-02-20 01:45:06', 'Bobalooba', ['Bean', 'Barfoo', 'Mandible']),
-                   ('window.jpg',      '2015-02-20 00:54:53', 'Jimbulator', ['Bobalooba', 'Bean']),
-                   ('hang-glider.jpg', '2015-02-19 20:43:48', 'Bobalooba', ['Jimbulator', 'Barfoo']),
-                   ('seashell.jpg',    '2015-02-19 19:03:22', 'Contrary', [])
-                 ]
-
+            ('cycling.jpg', '2015-02-20 01:45:06', 'Bobalooba', ['Bean', 'Barfoo', 'Mandible']),
+            ('window.jpg', '2015-02-20 00:54:53', 'Jimbulator', ['Bobalooba', 'Bean']),
+            ('hang-glider.jpg', '2015-02-19 20:43:48', 'Bobalooba', ['Jimbulator', 'Barfoo']),
+            ('seashell.jpg', '2015-02-19 19:03:22', 'Contrary', [])
+        ]
 
         # create one entry per image for each user
         cursor = self.cursor()
@@ -143,7 +137,7 @@ CREATE TABLE likes (
         self.commit()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     # if we call this script directly, create the database and make sample data
     db = COMP249Db()
     db.create_tables()
