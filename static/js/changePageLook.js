@@ -3,6 +3,12 @@
  */
 
 $(document).ready(function () {
-    alert("test");
-   
-});
+    var url = window.location.pathname;
+    if (url === "/about"){
+        $("#nav-about").addClass("active");
+    } else if (url === "/"){
+        $("#nav-home").addClass("active");
+    } else if (url === "/profile"){
+        $("#nav-profile").addClass("active");
+    }
+})

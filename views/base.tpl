@@ -24,9 +24,9 @@
         <div class="nav-wrapper #546e7a blue-grey darken-1">
             <a href="#" class="brand-logo center">FlowTow</a>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="#">My Images</a></li>
+                <li id="nav-home"><a href="/">Home</a></li>
+                <li id="nav-about"><a href="/about">About</a></li>
+                <li id="nav-profile"><a href="#">My Images</a></li>
             </ul>
             <ul class="right">
                 <li><a href="#" class="waves-effect waves-light btn #455a64 blue-grey darken-2">Login</a></li>
