@@ -22,11 +22,9 @@ def list_images(db, n, usernick=None):
     list_of_images = []
 
     for row in cur.fetchall():
-        likes_cur = cur
-        likes_cur.execute('SELECT `usernick` FROM likes WHERE `filename`=\'' + row[0] + "';")
 
         # TODO add list_comments to dictionary
-        image = {'filename': row[0], 'timestamp': row[1], 'user': row[2], 'likes': len(likes_cur.fetchall())}
+        image = {'filename': row[0], 'timestamp': row[1], 'user': row[2], 'likes': count_likes(db, row[0])}
         list_of_images.append(image)
 
     return list_of_images
@@ -42,3 +40,7 @@ def add_like(db, filename, usernick=None):
 
 def count_likes(db, filename):
     """Count the number of likes for this filename"""
+    cur = db.cursor()
+    cur.execute('SELECT `usernick` FROM likes WHERE `filename`=\'' + filename + "';")
+    return len(cur.fetchall())
+
