@@ -32,6 +32,8 @@ def list_images(db, n, usernick=None):
 
 def add_image(db, filename, usernick):
     """Add this image to the database for the given user"""
+    cur = db.cursor()
+    cur.execute("INSERT INTO images VALUES('" + filename + "','" + str(datetime.datetime.now()) + "', '" + usernick + "');")
 
 
 def add_like(db, filename, usernick=None):
