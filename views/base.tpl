@@ -7,7 +7,6 @@
 
     <title>{{title}}</title>
 
-    <script src="/static/js/changePageLook.js"></script>
     <!--Jquery compiled and minified-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
     <!-- Compiled and minified CSS -->
@@ -16,6 +15,7 @@
     <link rel="stylesheet" href="/static/css/stylesheet.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="/static/js/changePageLook.js"></script>
 </head>
 <body>
 

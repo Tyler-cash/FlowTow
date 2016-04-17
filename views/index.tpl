@@ -17,9 +17,9 @@
                     <p class='date'>Uploaded : 2016-01-04:19:13</p>
                 </div>
                 <div class="card-action">
-                    <form>
-                        <button action="submit /like" name="cycling.jpg"><a class="waves-effect waves-light btn">Like</a></button>
-                        <input value="cycling.jpg" class="hidden">
+                    <form action="/like">
+                        <input type="submit" value="Like" action="/like"><a class="waves-effect waves-light btn">Like</a></input>
+                        <input type="submit" action="/like" value="Like" class="hidden">
                     </form>
                 </div>
             </div>
@@ -35,9 +35,9 @@
                     <p class='date'>Uploaded : 2016-01-04:19:13</p>
                 </div>
                 <div class="card-action">
-                    <form>
-                        <button action="/like" name="flower.jpg"><a class="waves-effect waves-light btn">Like</a></button>
-                        <input value="flower.jpg" class="hidden">
+                    <form action="/like">
+                        <input type="submit" value="Like" action="/like"><a class="waves-effect waves-light btn">Like</a></input>
+                        <input type="submit" action="/like" value="Like" class="hidden">
                     </form>
                 </div>
             </div>
@@ -53,9 +53,9 @@
                     <p class='likes'>3 Likes</p>
                 </div>
                 <div class="card-action">
-                    <form>
-                        <button action="/like"><a class="waves-effect waves-light btn">Like</a></button>
-                        <input value="hang-glider.jpg" class="hidden">
+                    <form action="/like">
+                        <input type="submit" value="Like" action="/like"><a class="waves-effect waves-light btn">Like</a></input>
+                        <input type="submit" action="/like" value="Like" class="hidden">
                     </form>
                 </div>
             </div>
