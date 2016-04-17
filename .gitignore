@@ -3,3 +3,6 @@
 !.gitignore
 !static*
 !views*
+!static/css*
+!main.py
+!database.py
