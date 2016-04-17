@@ -6,3 +6,4 @@
 !static/css*
 !main.py
 !database.py
+!interface.py
