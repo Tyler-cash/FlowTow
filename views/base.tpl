@@ -26,7 +26,7 @@
             <ul>
                 <li id="nav-home"><a href="/">Home</a></li>
                 <li id="nav-about"><a href="/about">About</a></li>
-                <li id="nav-profile"><a href="#">My Images</a></li>
+                <li id="nav-profile"><a href="/profile">Profile</a></li>
             </ul>
             <ul class="right">
                 <li><a href="#" class="waves-effect waves-light btn #455a64 blue-grey darken-2">Login</a></li>

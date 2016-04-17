@@ -2,10 +2,7 @@
 @author:
 '''
 import bottle
-from bottle import Bottle, template, debug, static_file, get, route
-import interface
-import users
-from database import COMP249Db
+from bottle import Bottle, template, debug
 
 COOKIE_NAME = 'sessionid'
 
@@ -13,12 +10,17 @@ app = Bottle()
 
 @app.route('/')
 def home_page():
-    return template('index', title="Hello!", home="active", profile="", about="")
+    return template('index', title="Home")
 
 
 @app.route('/about')
 def about_page():
     return template('about', title="About")
+
+
+@app.route('/profile')
+def about_page():
+    return template('profile', title="Profile")
 
 
 # Serves static files
