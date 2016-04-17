@@ -4,10 +4,6 @@
 import datetime
 
 
-def get_likes(cur):
-    pass
-
-
 def list_images(db, n, usernick=None):
     """Return a list of dictionaries for the first 'n' images in
     order of timestamp. Each dictionary will contain keys 'filename', 'timestamp', 'user' and 'comments'.
@@ -16,14 +12,13 @@ def list_images(db, n, usernick=None):
     cur = db.cursor()
 
     if usernick is None:
-        cur.execute('SELECT * FROM images ORDER BY timestamp DESC;')  # LIMIT `' + str(n) + "`;")
+        cur.execute('SELECT * FROM images ORDER BY timestamp DESC LIMIT ' + str(n) + ";")
     else:
-        cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + ' ORDER BY timestamp ASC;')  # LIMIT `' + str(n) + "`;")
+        cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + ' ORDER BY timestamp ASC LIMIT `' + str(n) + '`;')
 
     list_of_images = []
 
     for row in cur.fetchall():
-        # TODO add list_comments to dictionary
         image = {'filename': row[0], 'timestamp': row[1], 'user': row[2], 'likes': count_likes(db, row[0])}
         list_of_images.append(image)
 
