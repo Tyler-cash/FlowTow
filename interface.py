@@ -12,7 +12,7 @@ def list_images(db, n, usernick=None):
     cur = db.cursor()
 
     if usernick is None:
-        cur.execute('SELECT * FROM images ORDER BY timestamp DESC LIMIT ' + str(n) + ";")
+        cur.execute('SELECT * FROM images ORDER BY timestamp LIMIT ' + str(n) + ";")
     else:
         cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + ' ORDER BY timestamp ASC LIMIT `' + str(n) + '`;')
 
