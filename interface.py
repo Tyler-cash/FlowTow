@@ -12,13 +12,19 @@ def list_images(db, n, usernick=None):
     cur = db.cursor()
 
     if usernick is None:
-        cur.execute('SELECT * FROM images ORDER BY timestamp LIMIT ' + str(n) + ";")
+        cur.execute('SELECT * FROM images ORDER BY timestamp DESC;')
     else:
-        cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + ' ORDER BY timestamp ASC LIMIT `' + str(n) + '`;')
+        cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + ' ORDER BY timestamp DESC;')
 
     list_of_images = []
+    i = 0;
 
     for row in cur.fetchall():
+        if i > n - 1:
+            break
+        else:
+            i += 1
+
         image = {'filename': row[0], 'timestamp': row[1], 'user': row[2], 'likes': count_likes(db, row[0])}
         list_of_images.append(image)
 
