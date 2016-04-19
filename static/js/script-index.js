@@ -4,11 +4,18 @@
 
 $(document).ready(function () {
     var url = window.location.pathname;
-    if (url === "/about"){
+    if (url === "/about") {
         $("#nav-about").addClass("active");
-    } else if (url === "/"){
+    } else if (url === "/") {
         $("#nav-home").addClass("active");
-    } else if (url === "/profile"){
+    } else if (url === "/profile") {
         $("#nav-profile").addClass("active");
     }
-})
+
+
+    $('form').click(function () {
+        $(this).submit();
+        return false;
+    });
+});
+

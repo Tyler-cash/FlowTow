@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/static/css/stylesheet.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <script src="/static/js/changePageLook.js"></script>
+    <script src="/static/js/script-index.js"></script>
 </head>
 <body>
 

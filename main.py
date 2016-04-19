@@ -2,16 +2,28 @@
 @author:
 '''
 import bottle
-from bottle import Bottle, template, debug
+from bottle import Bottle, request, template, debug
+
+import instanceOfDatabase
+import interface
 
 COOKIE_NAME = 'sessionid'
 
 application = Bottle()
 
-
 @application.route('/')
 def home_page():
     return template('index', title="Home")
+
+
+@application.post('/like')
+def like_image():
+    liked_picture = request.forms.get('filename')
+    interface.add_like(db, liked_picture)
+    bottle.response.set_header('Location', '/')
+    bottle.response.status = 303
+
+    return 'Redirect to /'
 
 
 @application.route('/about')
@@ -41,5 +53,9 @@ def serve_javascripts(filename):
 
 
 if __name__ == '__main__':
+    db = instanceOfDatabase.db
+
+    interface.add_like(db, "cycling.jpg")
+
     debug()
     application.run()
