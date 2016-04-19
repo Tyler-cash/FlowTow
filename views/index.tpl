@@ -27,8 +27,8 @@
                     <p class="date">Uploaded : {{timestamp}}</p>
                 </div>
                 <div class="card-action center">
-                    <form action="/like" id="{{filename}}" class="like-image" method="post">
-                        <input value="Like"><a class="waves-effect waves-light btn image-btn">Like</a>
+                    <form action="/like" class="like-image" method="post">
+                        <input type="submit" value="Like" action="/like"><a class="waves-effect waves-light btn">Like</a></input>
                         <input name="filename" value="{{filename}}" class="hidden">
                     </form>
                 </div>
