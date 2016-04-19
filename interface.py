@@ -37,6 +37,7 @@ def add_image(db, filename, usernick):
     cur.execute("INSERT INTO images VALUES('" + filename + "','" + str(datetime.datetime.now()) + "', '" + usernick + "');")
 
 
+
 def add_like(db, filename, usernick=None):
     """Increment the like count for this image"""
     cur = db.cursor()
@@ -48,6 +49,7 @@ def add_like(db, filename, usernick=None):
             return
 
         cur.execute("INSERT INTO likes VALUES('" + filename + "', NULL)")
+        db.conn.commit()
     else:
         # Ensures user exists
         cur.execute("SELECT * FROM users WHERE `nick`='" + usernick + "'")
@@ -60,6 +62,7 @@ def add_like(db, filename, usernick=None):
 
             # TODO possibly add check to see if user has liked picture
         cur.execute("INSERT INTO likes VALUES('" + filename + "', '" + usernick + "');")
+        db.conn.commit()
 
 
 def count_likes(db, filename):
