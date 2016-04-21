@@ -19,11 +19,10 @@ def home_page():
 @application.post('/like')
 def like_image():
     liked_picture = request.forms.get('filename')
-    interface.add_like(db, liked_picture)
-    bottle.response.set_header('Location', '/')
-    bottle.response.status = 303
+    if liked_picture is not None:
+        interface.add_like(db, liked_picture)
 
-    return 'Redirect to /'
+    bottle.redirect('/', 303)
 
 
 @application.route('/about')
@@ -54,8 +53,6 @@ def serve_javascripts(filename):
 
 if __name__ == '__main__':
     db = instanceOfDatabase.db
-
-    interface.add_like(db, "cycling.jpg")
 
     debug()
     application.run()
