@@ -11,11 +11,5 @@ $(document).ready(function () {
     } else if (url === "/profile") {
         $("#nav-profile").addClass("active");
     }
-
-
-    $('form').click(function () {
-        $(this).submit();
-        return false;
-    });
 });
 
