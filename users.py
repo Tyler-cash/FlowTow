@@ -4,6 +4,8 @@
 import uuid
 
 # this variable MUST be used as the name for the cookie used by this application
+import bottle
+
 COOKIE_NAME = 'sessionid'
 
 
@@ -28,7 +30,7 @@ def generate_session(db, usernick):
     else:
         sessionID = uuid.uuid4().hex
         cur.execute("INSERT INTO sessions VALUES ('" + sessionID + "','" + usernick + "')")
-        bottle.response.set_cookie('sessionid', sessionID)
+        bottle.response.set_cookie(COOKIE_NAME, sessionID)
 
 # TODO sanitize inputs
 def delete_session(db, usernick):
