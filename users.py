@@ -32,13 +32,26 @@ def generate_session(db, usernick):
         cur.execute("INSERT INTO sessions VALUES ('" + sessionID + "','" + usernick + "')")
         bottle.response.set_cookie(COOKIE_NAME, sessionID)
 
+
 # TODO sanitize inputs
 def delete_session(db, usernick):
     """remove all session table entries for this user"""
     cur = db.cursor()
     cur.execute("DELETE FROM sessions WHERE usernick='" + usernick + "';")
 
+
 def session_user(db):
     """try to
     retrieve the user from the sessions table
     return usernick or None if no valid session is present"""
+    cur = db.cursor()
+    cookie = bottle.request.get_cookie('sessionid')
+    if cookie is None:
+        return None
+    else:
+        cur.execute("SELECT * FROM sessions WHERE sessionid='" + cookie + "';")
+        result = cur.fetchone()
+        if result is not None:
+            return result[1]
+        else:
+            return None
