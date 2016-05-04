@@ -2,8 +2,6 @@
 @author:
 '''
 
-import bottle
-
 # this variable MUST be used as the name for the cookie used by this application
 COOKIE_NAME = 'sessionid'
 
@@ -20,10 +18,11 @@ def generate_session(db, usernick):
     """
 
 
-
+# TODO sanitize inputs
 def delete_session(db, usernick):
     """remove all session table entries for this user"""
-
+    cur = db.cursor()
+    cur.execute("DELETE FROM sessions WHERE usernick='" + usernick + "';")
 
 
 def session_user(db):
