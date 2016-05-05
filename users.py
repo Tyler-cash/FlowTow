@@ -14,9 +14,9 @@ COOKIE_NAME = 'sessionid'
 def check_login(db, usernick, password):
     """returns True if password matches stored"""
     cur = db.cursor()
-    cur.execute("SELECT * FROM users WHERE password='" + database.COMP249Db.encode(db,
-                                                                                   password) + "' AND nick='" + usernick + "';")
-    result = cur.fetchone()
+    password = database.COMP249Db.encode(db, password)
+    cur.execute("SELECT * FROM users WHERE password='" + password + "' AND nick='" + usernick + "';")
+    result = cur.fetchall()
     if result is not None:
         return True
     else:
