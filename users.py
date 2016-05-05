@@ -6,11 +6,21 @@ import uuid
 # this variable MUST be used as the name for the cookie used by this application
 import bottle
 
+import database
+
 COOKIE_NAME = 'sessionid'
 
 
 def check_login(db, usernick, password):
     """returns True if password matches stored"""
+    cur = db.cursor()
+    cur.execute("SELECT * FROM users WHERE password='" + database.COMP249Db.encode(db,
+                                                                                   password) + "' AND nick='" + usernick + "';")
+    result = cur.fetchone()
+    if result is not None:
+        return True
+    else:
+        return False
 
 
 # TODO sign cookies
