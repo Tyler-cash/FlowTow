@@ -12,19 +12,11 @@ COOKIE_NAME = 'sessionid'
 
 application = Bottle()
 
+
+# Redirects
 @application.route('/')
 def home_page():
     return template('index', title="Home", usernick="None")
-
-
-@application.post('/like')
-def like_image():
-    db = instanceOfDatabase.db
-    liked_picture = request.forms.get('filename')
-    if liked_picture is not None:
-        interface.add_like(db, liked_picture)
-
-    bottle.redirect('/', 303)
 
 
 @application.route('/about')
@@ -34,18 +26,48 @@ def about_page():
 
 @application.route('/my')
 def about_page():
-    return template('my', title="My Profile")
-
     db = instanceOfDatabase.db
-    if users.session_user(db):
+    if users.session_user(db) is not None:
         return template('my', title="My Profile")
     else:
-        bottle.redirect('/', 303)
-
+        return bottle.redirect('/', 303)
 
 @application.route('/login')
 def login_page():
-    return template('login', title="Login")
+    return template('login', title="Login", errors="hidden")
+
+
+@application.route('/login-failed')
+def login_failed():
+    return template('login', title="Login", errors="")
+
+
+# Post method handlers
+@application.post('/like')
+def like_image():
+    db = instanceOfDatabase.db
+    liked_picture = request.forms.get('filename')
+    if liked_picture is not None:
+        interface.add_like(db, liked_picture)
+
+    return bottle.redirect('/', 303)
+
+
+@application.post('/login')
+def login_user():
+    db = instanceOfDatabase.db
+    username = request.forms.get('nick')
+    password = request.forms.get('password')
+
+    if username is "" or password is "":
+        return login_failed()
+
+    if users.check_login(db, username, password):
+        users.generate_session(db, username)
+        return bottle.redirect('/my', 303)
+    else:
+        return login_failed()
+
 
 # Serves static files
 @application.route('/static/images/<filename:path>')
