@@ -10,3 +10,8 @@
 .hidden {
     display: none;
 }
+
+#login {
+    margin-left: 45%;
+    font-size: 300%;
+}
