@@ -8,7 +8,7 @@ $(document).ready(function () {
         $("#nav-about").addClass("active");
     } else if (url === "/") {
         $("#nav-home").addClass("active");
-    } else if (url === "/profile") {
+    } else if (url === "/my") {
         $("#nav-profile").addClass("active");
     }
 });

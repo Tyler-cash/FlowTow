@@ -26,10 +26,10 @@
             <ul>
                 <li id="nav-home"><a href="/">Home</a></li>
                 <li id="nav-about"><a href="/about">About</a></li>
-                <li id="nav-profile"><a href="/profile">Profile</a></li>
+                <li id="nav-profile"><a href="/my">My Images</a></li>
             </ul>
             <ul class="right">
-                <li><a href="#" class="waves-effect waves-light btn #455a64 blue-grey darken-2">Login</a></li>
+                <li><a href="/login" class="waves-effect waves-light btn #455a64 blue-grey darken-2">Login</a></li>
                 <li><a href="#" class="waves-effect waves-light btn #c62828 red darken-3">Sign-Up</a></li>
             </ul>
         </div>
