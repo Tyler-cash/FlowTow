@@ -14,6 +14,7 @@
         % likes = image['likes']
         % timestamp = image['timestamp']
         % filename = image['filename']
+        %#Prints this out len(images) times
         <div class="image col s10 m4 offset-s1 flowtow">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
