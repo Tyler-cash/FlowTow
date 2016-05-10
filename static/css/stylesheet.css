@@ -18,6 +18,20 @@
     font-size: 110%;
 }
 
+#login-error {
+    color: white;
+    line-height: 30px;
+    text-align: center;
+}
+
+#login-error i {
+    margin-top: 3px;
+}
+
+#login-error span {
+    position: relative;
+    top: -6px;
+}
 #loginform li {
     margin-left: 10px;
 }
