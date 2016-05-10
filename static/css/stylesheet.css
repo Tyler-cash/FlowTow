@@ -3,6 +3,15 @@
     margin-bottom: -40px;
 }
 
+#about-page {
+    text-align: center;
+    font-size: 200%;
+    border: 1px solid #c7c7c7;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
 .container {
     padding-top: 100px;
     padding-bottom: 40px;
@@ -16,6 +25,21 @@
     padding: 0 20px 35px 20px;
     margin: 15px 20px 0 20px;
     font-size: 110%;
+}
+
+#login-error {
+    color: white;
+    line-height: 30px;
+    text-align: center;
+}
+
+#login-error i {
+    margin-top: 3px;
+}
+
+#login-error span {
+    position: relative;
+    top: -6px;
 }
 
 #loginform li {

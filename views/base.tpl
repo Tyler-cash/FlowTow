@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <!--Stylesheet css-->
     <link rel="stylesheet" href="/static/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="/static/js/script-index.js"></script>
@@ -22,11 +23,11 @@
 <div class="navbar-fixed ">
     <nav>
         <div class="nav-wrapper #546e7a blue-grey darken-1">
-            <a href="#" class="brand-logo center">FlowTow</a>
+            <a href="/" class="brand-logo center">FlowTow</a>
             <ul>
                 <li id="nav-home"><a href="/">Home</a></li>
                 <li id="nav-about"><a href="/about">About</a></li>
-                <li id="nav-profile"><a href="/my">My Images</a></li>
+                <li class="{{loggedIn}}" id="nav-profile"><a href="/my">My Images</a></li>
             </ul>
             %import instanceOfDatabase
             %import users
