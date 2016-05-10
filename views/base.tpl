@@ -23,7 +23,7 @@
 <div class="navbar-fixed ">
     <nav>
         <div class="nav-wrapper #546e7a blue-grey darken-1">
-            <a href="#" class="brand-logo center">FlowTow</a>
+            <a href="/" class="brand-logo center">FlowTow</a>
             <ul>
                 <li id="nav-home"><a href="/">Home</a></li>
                 <li id="nav-about"><a href="/about">About</a></li>
