@@ -14,7 +14,7 @@ def list_images(db, n, usernick=None):
     if usernick is None:
         cur.execute('SELECT * FROM images ORDER BY timestamp DESC;')
     else:
-        cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + ' ORDER BY timestamp DESC;')
+        cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + '` ORDER BY timestamp DESC;')
 
     list_of_images = []
     i = 0;
