@@ -1,4 +1,19 @@
 % rebase('base.tpl')
+<div class='container' id="fileupload">
+    <div class="row">
+        <p>Please select an image to upload</p>
+        <form id="uploadform" action="/upload" method="post" enctype="multipart/form-data">
+            <div class="file-field input-field">
+                <div class="btn waves-effect waves-light">
+                    <span>Image</span>
+                    <input name="imagefile" id="file" type="file">
+                </div>
+                <input type="submit" class="btn waves-effect waves-light" value="submit">
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <div class='container'>
     <div class="row">
