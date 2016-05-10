@@ -17,7 +17,8 @@ def check_login(db, usernick, password):
     password = database.COMP249Db.encode(db, password)
     cur.execute("SELECT * FROM users WHERE password='" + password + "' AND nick='" + usernick + "';")
     result = cur.fetchall()
-    if result is not None:
+    db.conn.commit()
+    if len(result) == 1:
         return True
     else:
         return False
@@ -33,6 +34,7 @@ def generate_session(db, usernick):
     cur = db.cursor()
     # TODO sanitize input
     cur.execute("SELECT * FROM sessions WHERE usernick='" + usernick + "';")
+    db.conn.commit()
     result = cur.fetchone()
     if result is not None:
         sessionID = result[0]
@@ -40,6 +42,7 @@ def generate_session(db, usernick):
     else:
         sessionID = uuid.uuid4().hex
         cur.execute("INSERT INTO sessions VALUES ('" + sessionID + "','" + usernick + "')")
+        db.conn.commit()
         bottle.response.set_cookie(COOKIE_NAME, sessionID)
 
 
@@ -48,6 +51,7 @@ def delete_session(db, usernick):
     """remove all session table entries for this user"""
     cur = db.cursor()
     cur.execute("DELETE FROM sessions WHERE usernick='" + usernick + "';")
+    db.conn.commit()
 
 
 def session_user(db):
@@ -61,6 +65,7 @@ def session_user(db):
     else:
         cur.execute("SELECT * FROM sessions WHERE sessionid='" + cookie + "';")
         result = cur.fetchone()
+        db.conn.commit()
         if result is not None:
             return result[1]
         else:
