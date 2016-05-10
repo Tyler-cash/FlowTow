@@ -14,8 +14,7 @@ def list_images(db, n, usernick=None):
         cur.execute('SELECT * FROM images ORDER BY timestamp DESC;')
     else:
         # No idea why this needs to be a tuple but you can't just insert a string into the query
-        nick = (usernick,)
-        cur.execute('SELECT * FROM images WHERE usernick = ? ORDER BY timestamp DESC;', (nick))
+        cur.execute('SELECT * FROM images WHERE usernick = ? ORDER BY timestamp DESC;', (usernick,))
     db.conn.commit()
     list_of_images = []
     i = 0;
@@ -42,25 +41,24 @@ def add_image(db, filename, usernick):
 def add_like(db, filename, usernick=None):
     """Increment the like count for this image"""
     cur = db.cursor()
-    file = (filename,)
 
     if usernick is None:
-        cur.execute("SELECT * FROM images WHERE filename=?;", file)
+        cur.execute("SELECT * FROM images WHERE filename=?;", (filename,))
         db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
 
-        cur.execute("INSERT INTO likes VALUES(?, NULL)", file)
+        cur.execute("INSERT INTO likes VALUES(?, NULL)", (filename,))
         db.conn.commit()
     else:
         nick = (usernick,)
         # Ensures user exists
-        cur.execute("SELECT * FROM users WHERE nick=?", nick)
+        cur.execute("SELECT * FROM users WHERE nick=?", (usernick,))
         db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
         # Ensures file exists
-        cur.execute("SELECT * FROM images WHERE filename=?", (file))
+        cur.execute("SELECT * FROM images WHERE filename=?", (filename,))
         db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
@@ -74,6 +72,6 @@ def count_likes(db, filename):
     """Count the number of likes for this filename"""
     cur = db.cursor()
     file = (filename,)
-    cur.execute("SELECT `usernick` FROM likes WHERE filename=?;", file)
+    cur.execute("SELECT `usernick` FROM likes WHERE filename=?;", (filename,))
     db.conn.commit()
     return len(cur.fetchall())
