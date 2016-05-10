@@ -27,7 +27,7 @@
             <ul>
                 <li id="nav-home"><a href="/">Home</a></li>
                 <li id="nav-about"><a href="/about">About</a></li>
-                <li id="nav-profile"><a href="/my">My Images</a></li>
+                <li class="{{loggedIn}}" id="nav-profile"><a href="/my">My Images</a></li>
             </ul>
             %import instanceOfDatabase
             %import users
