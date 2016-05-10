@@ -42,6 +42,14 @@ def login_failed():
     return template('login', title="Login", errors="")
 
 
+@application.route('/logout')
+def logout_user():
+    db = instanceOfDatabase.db
+    user_nick = users.session_user(db)
+    users.delete_session(db, user_nick)
+    return bottle.redirect('/', 303)
+
+
 # Post method handlers
 @application.post('/like')
 def like_image():
@@ -64,10 +72,9 @@ def login_user():
 
     if users.check_login(db, username, password):
         users.generate_session(db, username)
-        return bottle.redirect('/my', 303)
+        return bottle.redirect('/', 303)
     else:
         return login_failed()
-
 
 # Serves static files
 @application.route('/static/images/<filename:path>')
