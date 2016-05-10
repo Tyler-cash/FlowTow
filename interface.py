@@ -14,8 +14,8 @@ def list_images(db, n, usernick=None):
     if usernick is None:
         cur.execute('SELECT * FROM images ORDER BY timestamp DESC;')
     else:
-        cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + '` ORDER BY timestamp DESC;')
-
+        cur.execute('SELECT * FROM images WHERE usernick="' + usernick + '" ORDER BY timestamp DESC;')
+    db.conn.commit()
     list_of_images = []
     i = 0;
 
@@ -34,9 +34,9 @@ def list_images(db, n, usernick=None):
 def add_image(db, filename, usernick):
     """Add this image to the database for the given user"""
     cur = db.cursor()
-    cur.execute("INSERT INTO images VALUES('" + filename + "','" + str(datetime.datetime.now()) + "', '" + usernick + "');")
-
-
+    cur.execute(
+        "INSERT INTO images VALUES('" + filename + "','" + str(datetime.datetime.now()) + "', '" + usernick + "');")
+    db.conn.commit()
 
 def add_like(db, filename, usernick=None):
     """Increment the like count for this image"""
@@ -45,6 +45,7 @@ def add_like(db, filename, usernick=None):
     if usernick is None:
         # Ensures file exists
         cur.execute("SELECT * FROM images WHERE filename='" + filename + "';")
+        db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
 
@@ -53,10 +54,12 @@ def add_like(db, filename, usernick=None):
     else:
         # Ensures user exists
         cur.execute("SELECT * FROM users WHERE `nick`='" + usernick + "'")
+        db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
         # Ensures file exists
         cur.execute("SELECT * FROM images WHERE `filename`='" + filename + "'")
+        db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
 
@@ -69,4 +72,5 @@ def count_likes(db, filename):
     """Count the number of likes for this filename"""
     cur = db.cursor()
     cur.execute("SELECT `usernick` FROM likes WHERE `filename`='" + filename + "';")
+    db.conn.commit()
     return len(cur.fetchall())
