@@ -28,10 +28,30 @@
                 <li id="nav-about"><a href="/about">About</a></li>
                 <li id="nav-profile"><a href="/my">My Images</a></li>
             </ul>
+            %import instanceOfDatabase
+            %import users
+
+            %db = instanceOfDatabase.db
+            %userNick = users.session_user(db)
+            %if userNick is not None:
             <ul class="right">
-                <li><a href="/login" class="waves-effect waves-light btn #455a64 blue-grey darken-2">Login</a></li>
-                <li><a href="#" class="waves-effect waves-light btn #c62828 red darken-3">Sign-Up</a></li>
+                <li>Logged in as {{userNick}}</li>
+                <li>
+                    <form action="/logout" id="logoutform" name="logoutform">
+                        <input name="logout" class="waves-effect waves-light btn #c62828 red darken-3" type="submit"
+                               value="Logout">
+                    </form>
+                </li>
             </ul>
+            %else:
+            <ul class="right">
+                <form action="/login" method="post" id="loginform" name="loginform">
+                    <li><input id="nick" name="nick" type="text" placeholder="Nickname"></li>
+                    <li><input id="password" name="password" type="password" placeholder="Password"></li>
+                    <li id="login" class="btn waves-effect waves-light"><input type="submit" value="Login"></li>
+                </form>
+            </ul>
+            %end
         </div>
     </nav>
 </div>
