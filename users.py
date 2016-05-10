@@ -15,7 +15,7 @@ def check_login(db, usernick, password):
     """returns True if password matches stored"""
     cur = db.cursor()
     password = database.COMP249Db.encode(db, password)
-    cur.execute("SELECT * FROM users WHERE password='" + password + "' AND nick='" + usernick + "';")
+    cur.execute("SELECT * FROM users WHERE password=? AND nick=?;", (password, usernick))
     result = cur.fetchall()
     db.conn.commit()
     if len(result) == 1:
@@ -33,7 +33,7 @@ def generate_session(db, usernick):
     """
     cur = db.cursor()
     # TODO sanitize input
-    cur.execute("SELECT * FROM sessions WHERE usernick='" + usernick + "';")
+    cur.execute("SELECT * FROM sessions WHERE usernick=?;", (usernick,))
     db.conn.commit()
     result = cur.fetchone()
     if result is not None:
@@ -41,7 +41,7 @@ def generate_session(db, usernick):
         bottle.response.set_cookie(COOKIE_NAME, sessionID)
     else:
         sessionID = uuid.uuid4().hex
-        cur.execute("INSERT INTO sessions VALUES ('" + sessionID + "','" + usernick + "')")
+        cur.execute("INSERT INTO sessions VALUES (?,?)", (sessionID, usernick))
         db.conn.commit()
         bottle.response.set_cookie(COOKIE_NAME, sessionID)
 
@@ -50,7 +50,7 @@ def generate_session(db, usernick):
 def delete_session(db, usernick):
     """remove all session table entries for this user"""
     cur = db.cursor()
-    cur.execute("DELETE FROM sessions WHERE usernick='" + usernick + "';")
+    cur.execute("DELETE FROM sessions WHERE usernick=(?);", (usernick,))
     db.conn.commit()
 
 
@@ -63,7 +63,7 @@ def session_user(db):
     if cookie is None:
         return None
     else:
-        cur.execute("SELECT * FROM sessions WHERE sessionid='" + cookie + "';")
+        cur.execute("SELECT * FROM sessions WHERE sessionid=?;", (cookie,))
         result = cur.fetchone()
         db.conn.commit()
         if result is not None:
