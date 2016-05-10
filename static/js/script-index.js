@@ -4,11 +4,12 @@
 
 $(document).ready(function () {
     var url = window.location.pathname;
-    if (url === "/about"){
+    if (url === "/about") {
         $("#nav-about").addClass("active");
-    } else if (url === "/"){
+    } else if (url === "/") {
         $("#nav-home").addClass("active");
-    } else if (url === "/profile"){
+    } else if (url === "/my") {
         $("#nav-profile").addClass("active");
     }
-})
+});
+

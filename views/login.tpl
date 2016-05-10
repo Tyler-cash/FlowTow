@@ -1,0 +1,12 @@
+%rebase('base.tpl')
+<div class="container">
+    <div class="row">
+        <p id="login"><b>Log-in</b></p>
+        <div class="{{errors}}">Login Failed, please try again</div>
+        <form action="/login" method="post" id="loginform" name="loginform">
+            <input id="nick" name="nick" type="text" placeholder="Nickname">
+            <input id="password" name="password" type="password" placeholder="Password">
+            <input class="btn waves-effect waves-light" type="submit" value="Login">
+        </form>
+    </div>
+</div>

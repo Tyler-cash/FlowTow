@@ -4,10 +4,6 @@
 import datetime
 
 
-def get_likes(cur):
-    pass
-
-
 def list_images(db, n, usernick=None):
     """Return a list of dictionaries for the first 'n' images in
     order of timestamp. Each dictionary will contain keys 'filename', 'timestamp', 'user' and 'comments'.
@@ -16,14 +12,19 @@ def list_images(db, n, usernick=None):
     cur = db.cursor()
 
     if usernick is None:
-        cur.execute('SELECT * FROM images ORDER BY timestamp DESC;')  # LIMIT `' + str(n) + "`;")
+        cur.execute('SELECT * FROM images ORDER BY timestamp DESC;')
     else:
-        cur.execute('SELECT * FROM images WHERE `usernick`=`' + usernick + ' ORDER BY timestamp ASC;')  # LIMIT `' + str(n) + "`;")
-
+        cur.execute('SELECT * FROM images WHERE usernick="' + usernick + '" ORDER BY timestamp DESC;')
+    db.conn.commit()
     list_of_images = []
+    i = 0;
 
     for row in cur.fetchall():
-        # TODO add list_comments to dictionary
+        if i > n - 1:
+            break
+        else:
+            i += 1
+
         image = {'filename': row[0], 'timestamp': row[1], 'user': row[2], 'likes': count_likes(db, row[0])}
         list_of_images.append(image)
 
@@ -33,8 +34,9 @@ def list_images(db, n, usernick=None):
 def add_image(db, filename, usernick):
     """Add this image to the database for the given user"""
     cur = db.cursor()
-    cur.execute("INSERT INTO images VALUES('" + filename + "','" + str(datetime.datetime.now()) + "', '" + usernick + "');")
-
+    cur.execute(
+        "INSERT INTO images VALUES('" + filename + "','" + str(datetime.datetime.now()) + "', '" + usernick + "');")
+    db.conn.commit()
 
 def add_like(db, filename, usernick=None):
     """Increment the like count for this image"""
@@ -43,26 +45,32 @@ def add_like(db, filename, usernick=None):
     if usernick is None:
         # Ensures file exists
         cur.execute("SELECT * FROM images WHERE filename='" + filename + "';")
+        db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
 
         cur.execute("INSERT INTO likes VALUES('" + filename + "', NULL)")
+        db.conn.commit()
     else:
         # Ensures user exists
         cur.execute("SELECT * FROM users WHERE `nick`='" + usernick + "'")
+        db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
         # Ensures file exists
         cur.execute("SELECT * FROM images WHERE `filename`='" + filename + "'")
+        db.conn.commit()
         if len(cur.fetchall()) < 1:
             return
 
             # TODO possibly add check to see if user has liked picture
         cur.execute("INSERT INTO likes VALUES('" + filename + "', '" + usernick + "');")
+        db.conn.commit()
 
 
 def count_likes(db, filename):
     """Count the number of likes for this filename"""
     cur = db.cursor()
     cur.execute("SELECT `usernick` FROM likes WHERE `filename`='" + filename + "';")
+    db.conn.commit()
     return len(cur.fetchall())

@@ -1,10 +1,23 @@
-input {
-    padding:0;
-    border:0;
-    width:0;
-    height:0;
+#welcome-message {
+    margin-top: 60px;
+    margin-bottom: -40px;
+}
+
+.container {
+    padding-top: 100px;
+    padding-bottom: 40px;
 }
 
 .hidden {
     display: none;
+}
+
+#login {
+    padding: 0 20px 35px 20px;
+    margin: 15px 20px 0 20px;
+    font-size: 110%;
+}
+
+#loginform li {
+    margin-left: 10px;
 }

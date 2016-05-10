@@ -1,21 +1,20 @@
 % rebase('base.tpl')
 
-
-<h1 class="center" id="welcome-message"><strong>Welcome to FlowTow</strong></h1>
-
 <div class='container'>
     <div class="row">
         %import instanceOfDatabase
         %import interface
-
+        %import users
         %db = instanceOfDatabase.db
 
-        %images = interface.list_images(db, 3)
+        %usernick = users.session_user(db)
+        %images = interface.list_images(db, 3, usernick)
         %for image in images:
         % user = image['user']
         % likes = image['likes']
         % timestamp = image['timestamp']
         % filename = image['filename']
+        %#Prints this out len(images) times
         <div class="image col s10 m4 offset-s1 flowtow">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
@@ -38,4 +37,3 @@
 
     </div>
 </div>
-
