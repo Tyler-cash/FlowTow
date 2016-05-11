@@ -1,6 +1,8 @@
 '''
 @author:
 '''
+import os
+
 import bottle
 from bottle import Bottle, request, template, debug
 
@@ -86,6 +88,24 @@ def login_user():
         return bottle.redirect('/', 303)
     else:
         return login_failed()
+
+
+@application.post('/upload')
+def upload_file():
+    db = instanceOfDatabase.db
+    user = users.session_user(db)
+    if user is None:
+        return bottle.redirect('/', 303)
+    image_file = request.files.get('imagefile')
+
+    if image_file.content_type != 'image/jpg' and image_file.content_type != 'image/jpeg':
+        return "Only jpg files allowed"
+
+    save_path = os.path.join(os.getcwd() + '\\static\\images\\', )
+    image_file.save(save_path)
+    interface.add_image(db, image_file.filename, user)
+
+    return bottle.redirect('/my', 303)
 
 
 # Serves static files

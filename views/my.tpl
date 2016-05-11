@@ -1,4 +1,19 @@
 % rebase('base.tpl')
+<div class='container' id="fileupload">
+    <div class="row">
+        <p>Please select an image to upload</p>
+        <form id="uploadform" action="/upload" method="post" enctype="multipart/form-data">
+            <div class="file-field input-field">
+                <div class="btn waves-effect waves-light">
+                    <span>Image</span>
+                    <input name="imagefile" id="file" type="file">
+                </div>
+                <input id="submit" type="submit" class="btn waves-effect waves-light" value="submit">
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <div class='container'>
     <div class="row">
@@ -18,7 +33,7 @@
         <div class="image col s10 m4 offset-s1 flowtow">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img draggable="false" src="/static/images/{{filename}}" alt="cycling.jpg">
+                    <img draggable="false" class="user-image" src="/static/images/{{filename}}" alt="cycling.jpg">
                 </div>
                 <div class="card-content">
                     <p class="user">{{user}}</p>
