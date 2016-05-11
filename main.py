@@ -97,7 +97,8 @@ def upload_file():
     if user is None:
         return bottle.redirect('/', 303)
     image_file = request.files.get('imagefile')
-
+    if image_file is None:
+        return 'No image submitted'
     if image_file.content_type != 'image/jpg' and image_file.content_type != 'image/jpeg':
         return "Only jpg files allowed"
 
