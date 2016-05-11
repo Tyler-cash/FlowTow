@@ -64,10 +64,8 @@
 }
 
 #fileupload form {
-    float: right;
-    margin-right: 46%;
+    margin-left: 62%;
     position: relative;
-    left: 200px;
     top: -90px;
 }
 
