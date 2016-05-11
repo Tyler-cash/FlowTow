@@ -3,14 +3,15 @@
     <div class="row">
         <p>Please select an image to upload</p>
         <form id="uploadform" action="/upload" method="post" enctype="multipart/form-data">
-            <div class="file-field input-field">
-                <div class="btn waves-effect waves-light">
-                    <span>Image</span>
-                    <input name="imagefile" id="file" type="file">
-                </div>
+            <form action="/login" method="post" id="loginform" name="loginform">
+                <li id="file-select" class="file-field input-field btn waves-effect waves-light"><input name="imagefile"
+                                                                                                        value="Select image"
+                                                                                                        id="file"
+                                                                                                        type="file">Select
+                    File
+                </li>
                 <input id="submit" type="submit" class="btn waves-effect waves-light" value="submit">
-            </div>
-        </form>
+            </form>
     </div>
 </div>
 
