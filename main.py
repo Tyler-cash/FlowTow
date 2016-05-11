@@ -102,7 +102,10 @@ def upload_file():
     if image_file.content_type != 'image/jpg' and image_file.content_type != 'image/jpeg':
         return "Only jpg files allowed"
 
-    save_path = os.path.join(os.getcwd() + '\\static\\images\\', )
+    if os.name == 'posix':
+        save_path = os.path.join(os.getcwd() + '/static/images/')
+    else:
+        save_path = os.path.join(os.getcwd() + '\\static\\images\\')
     image_file.save(save_path)
     interface.add_image(db, image_file.filename, user)
 
@@ -128,3 +131,4 @@ def serve_javascripts(filename):
 if __name__ == '__main__':
     debug()
     application.run()
+    instanceOfDatabase.reset_database()
