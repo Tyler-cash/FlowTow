@@ -4,12 +4,12 @@
         <p>Please select an image to upload</p>
         <form id="uploadform" action="/upload" method="post" enctype="multipart/form-data">
             <form action="/login" method="post" id="loginform" name="loginform">
-                <li id="file-select" class="file-field input-field btn waves-effect waves-light"><input name="imagefile"
-                                                                                                        value="Select image"
-                                                                                                        id="file"
-                                                                                                        type="file">Select
-                    File
-                </li>
+                <ul>
+                    <li id="file-select" class="file-field input-field btn waves-effect waves-light"><input
+                            name="imagefile"
+                            value="Select image" id="file" type="file">Select File
+                    </li>
+                </ul>
                 <input id="submit" type="submit" class="btn waves-effect waves-light" value="submit">
             </form>
     </div>
