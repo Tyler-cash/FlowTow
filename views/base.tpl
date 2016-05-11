@@ -37,10 +37,10 @@
             %if userNick is not None:
             <ul class="right">
                 <li>Logged in as {{userNick}}</li>
-                <li>
-                    <form action="/logout" id="logoutform" name="logoutform">
-                        <input name="logout" class="waves-effect waves-light btn #c62828 red darken-3" type="submit"
-                               value="Logout">
+                <li id="logout">
+                    <form action="/logout" id="logoutform" method="post" name="logoutform">
+                        <input id="logoutbutton" name="logout" class="waves-effect btn #c62828 red darken-3"
+                               type="submit" value="Logout">
                     </form>
                 </li>
             </ul>

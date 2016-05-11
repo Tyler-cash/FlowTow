@@ -10,7 +10,7 @@
 
         %db = instanceOfDatabase.db
 
-        %images = interface.list_images(db, 3)
+        %images = interface.list_images(db, 30)
         %for image in images:
         % user = image['user']
         % likes = image['likes']

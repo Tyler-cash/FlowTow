@@ -55,7 +55,7 @@ def login_failed():
     return template('login', title="Login", errors="", loggedIn=hidden_my_images())
 
 
-@application.route('/logout')
+@application.post('/logout')
 def logout_user():
     db = instanceOfDatabase.db
     user_nick = users.session_user(db)
@@ -130,5 +130,5 @@ def serve_javascripts(filename):
 
 if __name__ == '__main__':
     debug()
-    application.run()
+    application.run(host='192.168.1.103')
     instanceOfDatabase.reset_database()
