@@ -85,6 +85,14 @@ CREATE TABLE likes (
             usernick text,
             FOREIGN KEY(usernick) REFERENCES users(nick),
             FOREIGN KEY(filename) REFERENCES images(filename)
+);
+DROP TABLE IF EXISTS comments;
+CREATE TABLE comments (
+            filename text,
+            usernick text,
+            comments text,
+            FOREIGN KEY(usernick) REFERENCES users(nick),
+            FOREIGN KEY(filename) REFERENCES images(filename)
 );"""
 
         self.conn.executescript(sql)
