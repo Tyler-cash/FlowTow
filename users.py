@@ -15,7 +15,7 @@ def check_login(db, usernick, password):
     """returns True if password matches stored"""
     cur = db.cursor()
     password = database.COMP249Db.encode(db, password)
-    cur.execute("SELECT * FROM users WHERE password=? AND nick=?;", (password, usernick))
+    cur.execute("SELECT * FROM users WHERE password=? AND (UPPER(nick) LIKE UPPER(?));", (password, usernick))
     result = cur.fetchall()
     db.conn.commit()
     if len(result) == 1:

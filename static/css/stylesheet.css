@@ -45,3 +45,47 @@
 #loginform li {
     margin-left: 10px;
 }
+
+#fileupload {
+    height: 150px;
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-bottom: -20px;
+    margin-bottom: 20px;
+    border: 1px solid #c7c7c7;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.user-image {
+    height: 400px;
+    width: 400px;
+}
+
+#fileupload form {
+    margin-left: 62%;
+    position: relative;
+    top: -90px;
+}
+
+#fileupload p {
+    margin-left: 50px;
+    font-size: 200%;
+    text-align: left;
+}
+
+#logoutform i {
+    padding: 20px 20px 20px 20px;
+    font-size: 130%;
+    height: 30px;
+    position: relative;
+    top: -12px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#logoutform input {
+    position: relative;
+    top: -31px;
+}

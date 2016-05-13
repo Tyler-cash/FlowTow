@@ -1,6 +1,8 @@
 '''
 @author:
 '''
+import os
+
 import bottle
 from bottle import Bottle, request, template, debug
 
@@ -88,6 +90,28 @@ def login_user():
         return login_failed()
 
 
+@application.post('/upload')
+def upload_file():
+    db = instanceOfDatabase.db
+    user = users.session_user(db)
+    if user is None:
+        return bottle.redirect('/', 303)
+    image_file = request.files.get('imagefile')
+    if image_file is None:
+        return 'No image submitted'
+    if image_file.content_type != 'image/jpg' and image_file.content_type != 'image/jpeg':
+        return "Only jpg files allowed"
+
+    if os.name == 'posix':
+        save_path = os.path.join(os.getcwd() + '/static/images/')
+    else:
+        save_path = os.path.join(os.getcwd() + '\\static\\images\\')
+    image_file.save(save_path)
+    interface.add_image(db, image_file.filename, user)
+
+    return bottle.redirect('/my', 303)
+
+
 # Serves static files
 @application.route('/static/images/<filename:path>')
 def serve_images(filename):
@@ -107,3 +131,4 @@ def serve_javascripts(filename):
 if __name__ == '__main__':
     debug()
     application.run()
+    instanceOfDatabase.reset_database()
