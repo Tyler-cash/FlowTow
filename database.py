@@ -90,6 +90,7 @@ DROP TABLE IF EXISTS comments;
 CREATE TABLE comments (
             filename text,
             usernick text,
+            timestamp text default CURRENT_TIMESTAMP,
             comments text,
             FOREIGN KEY(usernick) REFERENCES users(nick),
             FOREIGN KEY(filename) REFERENCES images(filename)
