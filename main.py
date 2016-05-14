@@ -57,14 +57,16 @@ def login_failed():
 
 @application.route('/comments/<filename>')
 def login_failed(filename):
-    if "jpg" in filename or "jpeg" in filename:
+    if "jpg" in filename:
         db = instanceOfDatabase.db
         image = interface.get_image(db, filename)
         bottle.response.set_cookie('filename', filename)
         filename = filename.replace(".jpg", "")
-        filename = filename.replace(".jpeg", "")
         return bottle.redirect('/comments/' + filename)
     else:
+        test = bottle.request.get_cookie('filename')
+        if test is None:
+            return bottle.redirect('/comments/' + filename + ".jpg")
         return template('comment', title="Comments", loggedIn=hidden_my_images())
 
 
@@ -112,7 +114,7 @@ def upload_file():
     image_file = request.files.get('imagefile')
     if image_file is None:
         return 'No image submitted'
-    if image_file.content_type != 'image/jpg' and image_file.content_type != 'image/jpeg':
+    if image_file.content_type != 'image/jpg':
         return "Only jpg files allowed"
 
     if os.name == 'posix':
