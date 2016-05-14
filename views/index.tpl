@@ -19,7 +19,9 @@
         <div class="image col s10 m4 offset-s1 flowtow">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img draggable="false" class="user-image" src="/static/images/{{filename}}" alt="cycling.jpg">
+                    <a href="/comments/{{filename}}">
+                        <img draggable="false" class="user-image" src="/static/images/{{filename}}">
+                    </a>
                 </div>
                 <div class="card-content">
                     <p class="user">{{user}}</p>
