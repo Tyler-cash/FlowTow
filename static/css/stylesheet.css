@@ -12,6 +12,13 @@
     border-radius: 10px;
 }
 
+#comment-container {
+    border: .2px solid #c7c7c7;
+}
+
+#comment-container h3 {
+    text-align: center;
+}
 .container {
     padding-top: 100px;
     padding-bottom: 40px;
@@ -58,6 +65,14 @@
     border-radius: 10px;
 }
 
+.fullscreen-image {
+    height: 630px;
+    width: 630px;
+}
+
+#comment-image {
+    margin-right: 5%;
+}
 .user-image {
     height: 400px;
     width: 400px;
