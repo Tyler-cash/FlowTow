@@ -55,6 +55,19 @@ def login_failed():
     return template('login', title="Login", errors="", loggedIn=hidden_my_images())
 
 
+@application.route('/comments/<filename>')
+def login_failed(filename):
+    if "jpg" in filename or "jpeg" in filename:
+        db = instanceOfDatabase.db
+        image = interface.get_image(db, filename)
+        bottle.response.set_cookie('filename', filename)
+        filename = filename.replace(".jpg", "")
+        filename = filename.replace(".jpeg", "")
+        return bottle.redirect('/comments/' + filename)
+    else:
+        return template('comment', title="Comments", loggedIn=hidden_my_images())
+
+
 @application.post('/logout')
 def logout_user():
     db = instanceOfDatabase.db
