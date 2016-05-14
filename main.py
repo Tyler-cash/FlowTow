@@ -6,6 +6,7 @@ import os
 import bottle
 from bottle import Bottle, request, template, debug
 
+import comments
 import instanceOfDatabase
 import interface
 import users
@@ -166,6 +167,19 @@ def upload_file():
     interface.add_image(db, image_file.filename, user)
 
     return bottle.redirect('/my', 303)
+
+
+@application.post('/submit-comment')
+def comment_on_image():
+    db = instanceOfDatabase.db
+    usernick = users.session_user(db)
+    if usernick is not None:
+        comment = bottle.request.forms.get("comment")
+        filename = bottle.request.forms.get("filename")
+        comments.add_comment(db, comment, usernick, filename)
+        return bottle.redirect('/', 302)
+    else:
+        return "Sorry, you must be logged in to comment."
 
 
 # Serves static files
