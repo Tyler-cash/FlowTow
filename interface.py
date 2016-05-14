@@ -75,3 +75,10 @@ def count_likes(db, filename):
     cur.execute("SELECT `usernick` FROM likes WHERE filename=?;", (filename,))
     db.conn.commit()
     return len(cur.fetchall())
+
+
+def get_image(db, filename):
+    cur = db.cursor()
+    cur.execute("SELECT * FROM images WHERE filename=?", (filename,))
+    db.conn.commit()
+    return cur.fetchone()
