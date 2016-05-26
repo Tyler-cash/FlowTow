@@ -2,8 +2,8 @@
 *
 
 !.gitignore
-!static*
-!views*
+!static/*
+!views/*
 !static/css*
 !main.py
 !database.py

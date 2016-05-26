@@ -37,21 +37,24 @@
             %if userNick is not None:
             <ul class="right">
                 <li>Logged in as {{userNick}}</li>
-                <li>
-                    <form action="/logout" id="logoutform" name="logoutform">
-                        <input name="logout" class="waves-effect waves-light btn #c62828 red darken-3" type="submit"
-                               value="Logout">
+                <li id="logout">
+                    <form action="/logout" id="logoutform" method="post" name="logoutform">
+                        <input id="logoutbutton" name="logout"
+                               class="waves-effect waves-orange btn #c62828 red darken-3"
+                               type="submit" value="Logout">
                     </form>
                 </li>
             </ul>
             %else:
-            <ul class="right">
-                <form action="/login" method="post" id="loginform" name="loginform">
+
+            <form action="/login" method="post" id="loginform" name="loginform">
+                <ul class="right">
                     <li><input id="nick" name="nick" type="text" placeholder="Nickname"></li>
                     <li><input id="password" name="password" type="password" placeholder="Password"></li>
-                    <li id="login" class="btn waves-effect waves-light"><input type="submit" value="Login"></li>
-                </form>
-            </ul>
+                    <li id="login" class="btn waves-effect waves-purple"><input type="submit" value="Login"></li>
+                </ul>
+            </form>
+
             %end
         </div>
     </nav>

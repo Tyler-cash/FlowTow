@@ -12,6 +12,19 @@
     border-radius: 10px;
 }
 
+.comment p {
+    margin: 0;
+}
+#comment-container {
+    border: .2px solid #c7c7c7;
+    max-height: 815px;
+    overflow-y: auto;
+}
+
+#comment-container h3 {
+    text-align: center;
+}
+
 .container {
     padding-top: 100px;
     padding-bottom: 40px;
@@ -56,6 +69,15 @@
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+}
+
+.fullscreen-image {
+    height: 630px;
+    width: 630px;
+}
+
+#comment-image {
+    margin-right: 5%;
 }
 
 .user-image {

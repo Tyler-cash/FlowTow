@@ -10,7 +10,7 @@
 
         %db = instanceOfDatabase.db
 
-        %images = interface.list_images(db, 3)
+        %images = interface.list_images(db, 30)
         %for image in images:
         % user = image['user']
         % likes = image['likes']
@@ -19,7 +19,9 @@
         <div class="image col s10 m4 offset-s1 flowtow">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img draggable="false" class="user-image" src="/static/images/{{filename}}" alt="cycling.jpg">
+                    <a href="/comments/{{filename}}">
+                        <img draggable="false" class="user-image" src="/static/images/{{filename}}">
+                    </a>
                 </div>
                 <div class="card-content">
                     <p class="user">{{user}}</p>

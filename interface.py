@@ -34,7 +34,8 @@ def list_images(db, n, usernick=None):
 def add_image(db, filename, usernick):
     """Add this image to the database for the given user"""
     cur = db.cursor()
-    cur.execute("INSERT INTO images VALUES(?,?,?);", (filename, str(datetime.datetime.now()), usernick))
+    date = datetime.time.strftime("%Y-%m-%d %H:%M:%S")
+    cur.execute("INSERT INTO images VALUES(?,?,?);", (filename, str(date), usernick))
     db.conn.commit()
 
 
@@ -75,3 +76,10 @@ def count_likes(db, filename):
     cur.execute("SELECT `usernick` FROM likes WHERE filename=?;", (filename,))
     db.conn.commit()
     return len(cur.fetchall())
+
+
+def get_image(db, filename):
+    cur = db.cursor()
+    cur.execute("SELECT * FROM images WHERE filename=?", (filename,))
+    db.conn.commit()
+    return cur.fetchone()
