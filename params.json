@@ -1,0 +1,6 @@
+{
+  "name": "Flowtow",
+  "tagline": "",
+  "body": "FlowTow Image Hosting site\r\n================================\r\n\r\nThis is an image hosting site. It utilizes SQLite3, Bottle, Javascript and Python technologies. The CSS is only optimized for 1080p screens and some weird behaviour occurs on other resolutions.\r\n\r\nPictures of the site : \r\n![Screenshot of homepage](https://i.imgur.com/7fq8SSn.png)\r\n![Screenshot of profile page](https://i.imgur.com/hNbd7nE.png)",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
