@@ -208,5 +208,4 @@ def serve_css_sheets(filename):
 
 
 if __name__ == '__main__':
-    debug()
-    application.run(host='192.168.1.103')
+    application.run()
